@@ -1,4 +1,4 @@
-Code supporting '' by Long, Yang, Do 2022+
+Code supporting 'Causal Models, Prediction, and Extrapolation in Cell Line Perturbation Experiments' by Long, Yang, Do 2022+
 
 sim/ ## simulation code
 cellbox/ ## cellbox data and analysis code
