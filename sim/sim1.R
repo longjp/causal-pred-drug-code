@@ -5,6 +5,7 @@
 ### SIM 3) Leave one drug out (a is good)
 rm(list=ls())
 library(ggplot2)
+library(dplyr)
 library(igraph)
 set.seed(1234)
 
@@ -150,6 +151,8 @@ par(mfcol=c(1,2),mar=c(4.5,4.5,1,1))
 plot(as.vector(Xte),as.vector(Xpr),xlab="True",ylab="Regression Prediction")
 plot(as.vector(Xte),as.vector(Xpr2),xlab="True",ylab="Causal Prediction")
 dev.off()
+
+
 
 
 cor(as.vector(Xte),as.vector(Xpr2))
@@ -323,9 +326,28 @@ out$exp <- factor(out$exp,levels=c("RF","RF with B Misspecified","LODO"))
 
 ## make nice plot
 pp <- ggplot(out, aes(x = true, y = pred)) + geom_point(alpha=0.4)
-pp <- pp + facet_grid(est ~ exp) + xlab("True Response") + ylab("Predicted Response")
+pp <- pp + facet_grid(est ~ exp) + xlab("True Response") + ylab("Predicted Response") +
+  geom_abline(slope=1,intercept=0,alpha=0.5)
+
+rho2 <- out %>%
+  group_by(est,exp) %>%
+  summarise(rho = round(cor(true,pred), 3))
+
+
+mae2 <- out %>%
+  group_by(est,exp) %>%
+  summarise(mae = round(mean(abs(true-pred)),3))
+
+
+pp <- pp + geom_text(x = 1, y = 3.5, 
+            aes(label = paste0("MAE: ", mae)), 
+            data = mae2)
+pp <- pp + geom_text(x = 1, y = 4, 
+            aes(label = paste0("Pearson: ", rho)), 
+            data = rho2)
 
 pdf("figs/sim1-4.pdf",width=8,height=4.3)
 print(pp)
 dev.off()
+
 
