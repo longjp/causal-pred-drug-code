@@ -8,7 +8,7 @@
 
 This repository contain data and code supporting the manuscript:
 
-James P. Long, Yumeng Yang, Shohei Shimizu, Thong Pham, and Kim-Anh Do. "Causal Models and Prediction in Cell Line Perturbation Experiments." arXiv preprint arXiv:2207.09991 (2022). [arXiv](https://arxiv.org/abs/2207.09991)
+James P. Long, Yumeng Yang, Shohei Shimizu, Thong Pham, and Kim-Anh Do. "Causal Models and Prediction in Cell Line Perturbation Experiments." [preprint](https://doi.org/10.21203/rs.3.rs-3973384/v1)
 
 
 ### Repository Contents
